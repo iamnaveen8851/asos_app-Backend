@@ -2,12 +2,14 @@ const express = require("express");
 require("dotenv").config()
 const connectDb = require("./config/connectDb");
 const userRouter = require("./routes/userRouter");
+const productsRouter = require("./routes/productsRouter");
 
 
 const app = express();
 
 app.use(express.json());  
 app.use('/users', userRouter)
+app.use('/products', productsRouter)
 
 const PORT = process.env.PORT || 8080;
 

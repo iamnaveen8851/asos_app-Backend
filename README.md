@@ -32,3 +32,12 @@ this is the backend section of asos_app
 ### .env --> file check[x]
 
 ### .gitignore --> file check[x]
+
+
+
+
+## Features 
+  - Sign-up check[x]
+  - login check[x]
+
+
