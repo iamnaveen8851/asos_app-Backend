@@ -39,5 +39,9 @@ this is the backend section of asos_app
 ## Features 
   - Sign-up check[x]
   - login check[x]
+  - Products Model check[x]
+  - Products Routes check[x]
+  - Products Sorting and pagination functionality check[x]
+
 
 
