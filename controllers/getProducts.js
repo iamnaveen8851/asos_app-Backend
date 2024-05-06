@@ -8,7 +8,19 @@ const getProducts = async (req, res) => {
     const totalProducts = await productsModel.countDocuments();
     const totalPages = Math.ceil(totalProducts / limit);
 
-    const products = await productsModel.find().skip(skip).limit(limit);
+    let query = productsModel.find()
+
+    if(req.query.sortByPrice){
+      const sortByPrice = req.query.sortByPrice.toLowerCase();
+      if(sortByPrice === "asc"){
+        query =  query.sort({price : 1}) // asc order == 1
+      }else if(sortByPrice === "desc"){
+        query = query.sort({price : -1}) // desc order == -1
+      }
+    }
+
+
+    const products = await query.skip(skip).limit(limit);
 
     res
       .status(200)
