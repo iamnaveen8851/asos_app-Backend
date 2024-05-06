@@ -16,6 +16,7 @@ const getProducts = async (req, res) => {
         message: "All products data fetched successfully",
         currentPage: page,
         totalPages: totalPages,
+        totalProducts,
         products: products,
       });
   } catch (error) {
