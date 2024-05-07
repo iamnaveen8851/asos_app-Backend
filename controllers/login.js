@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 require("dotenv").config();
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, username} = req.body;
   try {
     const existingUser = await userModel.findOne({ email });
 
@@ -19,7 +19,7 @@ const login = async (req, res) => {
 
           res
             .status(201)
-            .json({ message: "User logged in successfully", token });
+            .json({ message: "User logged in successfully", token, existingUser });
         } else {
           res.status.json({ message: "Wrong password" });
         }
