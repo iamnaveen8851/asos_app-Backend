@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 require("dotenv").config();
 
 const login = async (req, res) => {
-  const { email, password, username} = req.body;
+  const { email, password, username } = req.body;
   try {
     const existingUser = await userModel.findOne({ email });
 
@@ -13,13 +13,17 @@ const login = async (req, res) => {
         // result == false
         if (result) {
           const token = jwt.sign(
-            { userId: existingUser._id, username: existingUser.username },
+            { userId: existingUser._id, email: existingUser.email },
             process.env.SECRET_KEY
           );
 
           res
             .status(201)
-            .json({ message: "User logged in successfully", token, existingUser });
+            .json({
+              message: "User logged in successfully",
+              token,
+              existingUser,
+            });
         } else {
           res.status.json({ message: "Wrong password" });
         }

@@ -2,7 +2,7 @@ const userModel = require("../models/userModel");
 const bcrypt = require("bcrypt");
 
 const signUp = async (req, res) => {
-  const { email, password, username} = req.body;
+  const { email, password, firstName, lastName } = req.body;
 
   try {
     const existingUser = await userModel.findOne({ email });
@@ -20,7 +20,8 @@ const signUp = async (req, res) => {
       const newUser = await userModel.create({
         email,
         password: hash,
-        username
+        firstName,
+        lastName
       });
 
       res.status(201).json({ message: "User Sign Up successfully", newUser });
