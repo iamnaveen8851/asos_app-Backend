@@ -24,6 +24,21 @@ app.get("/", (req, res) => {
 
 
 
+
+const keepAlive = () => {
+  const url = "https://asos-app-backend.onrender.com";
+  setInterval(async () => {
+    try {
+      const res = await axios.get(url);
+      console.log(`Keep alive ping sent, status:`, res.status);
+    } catch (error) {
+      console.error(`Keep alive ping failed:`, error.message);
+    }
+  }, 840000); // after every 14 minutes
+};
+
+keepAlive()
+
 app.listen(PORT, async () => {
   try {
     await connectDb
