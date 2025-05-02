@@ -25,8 +25,14 @@ app.get("/", (req, res) => {
 
 
 
-const keepAlive = () => {
-  const url = "https://asos-app-backend.onrender.com";
+
+
+app.listen(PORT, async () => {
+  try {
+    await connectDb
+    
+    console.log(`Server is listening on ${PORT}`);
+    const url = "https://asos-app-backend.onrender.com";
   setInterval(async () => {
     try {
       const res = await axios.get(url);
@@ -35,14 +41,6 @@ const keepAlive = () => {
       console.error(`Keep alive ping failed:`, error.message);
     }
   }, 840000); // after every 14 minutes
-};
-
-keepAlive()
-
-app.listen(PORT, async () => {
-  try {
-    await connectDb
-    console.log(`Server is listening on ${PORT}`);
   } catch (error) {
     console.log(error);
   }
